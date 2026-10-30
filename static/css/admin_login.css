@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: linear-gradient(
+        rgba(0,0,0,0.65),
+        rgba(0,0,0,0.65)
+    ),
+    url("/static/images/admin_bg.webp");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* Admin Login Box */
+
+.admin-login-container{
+
+    width:420px;
+    padding:45px;
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    border-radius:20px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.45);
+
+    color:#fff;
+
+    text-align:center;
+}
+
+/* Heading */
+
+.admin-login-container h1 {
+
+    font-size: 32px;
+
+    margin-bottom:10px;
+
+    letter-spacing:1px;
+
+}
+
+
+.admin-login-container p {
+
+    margin-bottom:30px;
+
+    color:#ddd;
+
+}
+
+
+/* Input Fields */
+
+.input-box {
+
+    margin-bottom:20px;
+
+}
+
+
+.input-box input {
+
+    width:100%;
+
+    padding:14px 18px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:30px;
+
+    background:white;
+
+    font-size:16px;
+
+}
+
+
+/* Login Button */
+
+
+.admin-btn {
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:#00c853;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+}
+
+
+.admin-btn:hover {
+
+    background:#00e676;
+
+    transform:scale(1.05);
+
+}
+
+
+/* Admin Icon */
+
+
+.admin-icon {
+
+    width:80px;
+
+    height:80px;
+
+    background:white;
+
+    color:#00c853;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:40px;
+
+    margin:0 auto 20px;
+
+}

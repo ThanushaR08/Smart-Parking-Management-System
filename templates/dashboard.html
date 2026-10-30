@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Parking Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+</head>
+
+<body>
+
+
+<!-- Navigation Bar -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-success shadow">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold"
+           href="{{ url_for('dashboard') }}">
+            🚗 Smart Parking
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse"
+             id="navbarNav">
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+
+                    <a class="nav-link active"
+                       href="{{ url_for('dashboard') }}">
+                        Dashboard
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="{{ url_for('history') }}">
+                        History
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                   <a class="nav-link"
+                    href="{{ url_for('logout') }}"
+                    onclick="return confirm('Do you want to logout?')">
+
+                    🚪 Logout
+
+                </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+<div class="overlay">
+
+<div class="dashboard-box">
+
+<h2 class="text-center mb-3">
+🚗 Smart Parking System
+</h2>
+
+<h4 class="text-warning text-center">
+Welcome {{ name }}
+</h4>
+
+<hr>
+
+<p class="text-center text-muted">
+
+📅 {{ today }}
+
+<br>
+
+🕒 <span id="clock"></span>
+
+</p>
+
+<hr>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+<div class="alert alert-warning">
+
+{% for message in messages %}
+
+<p class="mb-0">{{ message }}</p>
+
+{% endfor %}
+
+</div>
+
+{% endif %}
+{% endwith %}
+
+
+{% if booking %}
+
+<div class="alert alert-success">
+
+<h4 class="text-center">
+Your Current Booking
+</h4>
+
+<p><strong>Slot :</strong> {{ booking.slot_number }}</p>
+
+<p><strong>Vehicle :</strong> {{ booking.vehicle_number }}</p>
+
+<p><strong>Booking Date :</strong> {{ booking.booking_date }}</p>
+
+<p><strong>Expected Entry :</strong> {{ booking.expected_entry }}</p>
+
+<p><strong>Expected Exit :</strong> {{ booking.expected_exit }}</p>
+
+<p>
+
+<strong>Status :</strong>
+
+{% if booking.status=="Reserved" %}
+
+<span class="badge bg-warning text-dark">
+Reserved
+</span>
+
+<br><br>
+
+<a href="{{ url_for('start_parking') }}"
+class="btn btn-success">
+Start Parking
+</a>
+
+{% elif booking.status=="Active" %}
+
+<span class="badge bg-success">
+Active
+</span>
+
+<br><br>
+
+<a href="{{ url_for('exit_parking') }}"
+class="btn btn-danger">
+Exit Parking
+</a>
+
+{% else %}
+
+<span class="badge bg-secondary">
+{{ booking.status }}
+</span>
+
+{% endif %}
+
+</p>
+
+<a href="{{ url_for('cancel_booking') }}"
+class="btn btn-warning"
+onclick="return confirm('Cancel Booking?')">
+
+Cancel Booking
+
+</a>
+
+</div>
+
+{% endif %}
+
+<hr>
+
+<a href="{{ url_for('slot_booking') }}"
+class="btn btn-success w-100 mb-2">
+🚗 Book Parking Slot
+</a>
+
+
+</div>
+
+</div>
+
+<!-- Parking Time Exceeded Popup -->
+<div class="modal fade" id="extraTimeModal" tabindex="-1"
+     aria-labelledby="extraTimeModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content border-danger">
+
+            <div class="modal-header bg-danger text-white">
+
+                <h5 class="modal-title" id="extraTimeModalLabel">
+                    ⏰ Parking Time Exceeded
+                </h5>
+
+            </div>
+
+            <div class="modal-body text-center">
+
+                <h4 class="text-danger">
+                    Warning!
+                </h4>
+
+                <p>
+                    Your booked parking time has expired.
+                </p>
+
+                <p class="fw-bold text-danger">
+                    Extra parking charges may apply.
+                </p>
+
+                <p>
+                    Please exit your vehicle immediately.
+                </p>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="btn btn-danger"
+                        data-bs-dismiss="modal">
+                    OK
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+function showExtraTimePopup() {
+
+    var popup = new bootstrap.Modal(
+        document.getElementById('extraTimeModal')
+    );
+
+    popup.show();
+
+}
+
+</script>
+
+{% if extra_time %}
+
+<script>
+
+window.onload = function () {
+
+    showExtraTimePopup();
+
+};
+
+</script>
+
+{% endif %}
+
+
+<footer class="bg-dark text-white text-center py-3 mt-5">
+
+    © 2026 Smart Parking Management System
+
+    <br>
+
+    Developed using Python Flask & MongoDB
+
+</footer>
+
+<script>
+
+function updateClock(){
+
+    const now = new Date();
+
+    document.getElementById("clock").innerHTML =
+        now.toLocaleTimeString();
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+</script>
+
+</body>
+
+
+
+</html>

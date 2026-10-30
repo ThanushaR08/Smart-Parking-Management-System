@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>About - Smart Parking Management System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/website.css') }}">
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        🚗 Smart Parking
+    </div>
+
+    <nav>
+
+        <a href="/website">Home</a>
+        <a href="/about">About</a>
+        <a href="/services">Services</a>
+        <a href="/contact">Contact</a>
+        <a href="/register">Register</a>
+        <a href="/">User Login</a>
+        <a href="/admin">Admin</a>
+
+    </nav>
+
+</header>
+
+<section class="about">
+
+    <div class="about-container">
+
+        <div class="about-text">
+
+            <h2>About Smart Parking Management System</h2>
+
+            <p>
+                Smart Parking Management System is a web-based application
+                developed to automate parking slot management. Users can
+                register, log in, reserve parking slots, make payments,
+                and download invoices online.
+            </p>
+
+            <p>
+                The system also provides an administrator dashboard to
+                manage users, parking slots, bookings, payment reports,
+                and parking history.
+            </p>
+
+            <p>
+                This project is developed using Python Flask, MongoDB,
+                HTML, CSS, and JavaScript to provide a secure, user-friendly,
+                and efficient parking management solution.
+            </p>
+
+        </div>
+
+        <div class="about-image">
+
+            <img src="{{ url_for('static', filename='images/about.png') }}" alt="About">
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+
+</html>

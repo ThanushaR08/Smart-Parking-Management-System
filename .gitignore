@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+venv/
+.venv/
+__pycache__/
+*.pyc
+.vscode/
+database/__pycache__/
+mm.pdf
+test.jpg
+yolov8n.pt

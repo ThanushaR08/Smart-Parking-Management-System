@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Admin Dashboard - Smart Parking System</title>
+
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin_dashboard.css') }}">
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+</head>
+
+
+
+<body>
+
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+
+<h2>SMART PARKING</h2>
+
+<p class="admin-text">
+ADMIN PANEL
+</p>
+
+
+
+<a href="{{ url_for('admin_dashboard') }}">
+
+<i class="fa fa-dashboard"></i>
+
+Dashboard
+
+</a>
+
+
+
+<a href="{{ url_for('admin_users') }}">
+
+<i class="fa fa-users"></i>
+
+Users
+
+</a>
+
+
+
+
+<a href="{{ url_for('admin_slots') }}">
+
+<i class="fa fa-car"></i>
+
+Parking Slots
+
+</a>
+
+
+
+
+<a href="/admin_bookings">
+
+<i class="fa fa-calendar"></i>
+
+Bookings
+
+</a>
+
+
+
+
+<a href="/admin_payments">
+
+<i class="fa fa-money-bill"></i>
+
+Payments
+
+</a>
+
+
+
+
+
+<a href="/logout" class="logout">
+
+<i class="fa fa-sign-out"></i>
+
+Logout
+
+</a>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- MAIN CONTENT -->
+
+
+<div class="main">
+
+
+
+
+
+<!-- TOP BAR -->
+
+
+<div class="topbar">
+
+
+<h1>
+ADMIN DASHBOARD
+</h1>
+
+
+<p>
+Welcome, Admin 👋
+</p>
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- DASHBOARD CARDS -->
+
+
+<div class="cards">
+
+
+
+
+
+<div class="card">
+
+<i class="fa fa-users"></i>
+
+<div>
+
+<h3>
+{{ total_users }}
+</h3>
+
+<p>
+Total Users
+</p>
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+<div class="card">
+
+<i class="fa fa-car"></i>
+
+
+<div>
+
+<h3>
+{{ total_slots }}
+</h3>
+
+
+<p>
+Total Slots
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+<i class="fa fa-square-parking"></i>
+
+
+<div>
+
+<h3>
+{{ available_slots }}
+</h3>
+
+
+<p>
+Available Slots
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="card">
+
+<i class="fa fa-car-side"></i>
+
+
+<div>
+
+<h3>
+{{ occupied_slots }}
+</h3>
+
+
+<p>
+Occupied Slots
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="card">
+
+<i class="fa fa-clock"></i>
+
+
+<div>
+
+<h3>
+{{ active_parking }}
+</h3>
+
+
+<p>
+Active Parking
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="card">
+
+<i class="fa fa-money-bill"></i>
+
+
+<div>
+
+<h3>
+₹ {{ total_revenue }}
+</h3>
+
+
+<p>
+Total Revenue
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- PARKING ANALYTICS -->
+
+
+<div class="table-box">
+
+
+<h2>
+Parking Analytics
+</h2>
+
+
+
+<canvas id="parkingChart"></canvas>
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- RECENT PAYMENTS -->
+
+
+<div class="table-box">
+
+
+<h2>
+Recent Payments
+</h2>
+
+
+
+
+<table>
+
+
+
+<tr>
+
+<th>
+User
+</th>
+
+
+<th>
+Vehicle
+</th>
+
+
+<th>
+Amount
+</th>
+
+
+<th>
+Status
+</th>
+
+
+</tr>
+
+
+
+
+
+{% for payment in payments %}
+
+
+
+<tr>
+
+
+<td>
+{{ payment.name }}
+</td>
+
+
+
+<td>
+{{ payment.vehicle_number }}
+</td>
+
+
+
+<td>
+₹ {{ payment.amount }}
+</td>
+
+
+
+
+<td>
+
+<span class="success">
+
+{{ payment.payment_status }}
+
+</span>
+
+</td>
+
+
+
+</tr>
+
+
+
+
+{% endfor %}
+
+
+
+
+
+</table>
+
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- CHART SCRIPT -->
+
+
+<script>
+
+
+const ctx = document.getElementById('parkingChart');
+
+
+
+new Chart(ctx, {
+
+
+type:'doughnut',
+
+
+
+data:{
+
+
+labels:[
+
+'Available Slots',
+
+'Occupied Slots'
+
+],
+
+
+
+datasets:[{
+
+
+data:[
+
+{{ available_slots }},
+
+{{ occupied_slots }}
+
+]
+
+
+}]
+
+
+},
+
+
+
+options:{
+
+
+responsive:true,
+
+
+plugins:{
+
+
+legend:{
+
+
+position:'bottom'
+
+
+}
+
+
+}
+
+
+
+}
+
+
+
+});
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+
+</html>

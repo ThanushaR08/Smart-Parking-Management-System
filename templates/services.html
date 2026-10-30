@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Our Services</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+
+        body{
+            background:#eef2f7;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        h1{
+            color:#0d47a1;
+            font-weight:bold;
+        }
+
+        .service-card{
+
+            background:#fff;
+            border-radius:15px;
+            padding:35px;
+            text-align:center;
+            transition:.3s;
+            box-shadow:0 5px 15px rgba(0,0,0,.15);
+            height:100%;
+            cursor:default;
+
+        }
+
+        .service-card:hover{
+
+            transform:translateY(-8px);
+            box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+        }
+
+        .icon{
+
+            font-size:60px;
+            margin-bottom:20px;
+
+        }
+
+        h4{
+
+            color:#0d47a1;
+            font-weight:bold;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container py-5">
+
+    <h1 class="text-center mb-3">
+        Our Services
+    </h1>
+
+    <p class="text-center mb-5 fs-4">
+        Smart Parking Management System provides secure and reliable parking services.
+    </p>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+
+            <div class="service-card">
+
+                <div class="icon">🚗</div>
+
+                <h4>Online Slot Booking</h4>
+
+                <p>
+                    Reserve your parking slot quickly and securely.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="service-card">
+
+                <div class="icon">💳</div>
+
+                <h4>Online Payment</h4>
+
+                <p>
+                    Pay parking charges securely using QR Code.
+                </p>
+
+                
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="service-card">
+
+                <div class="icon">📄</div>
+
+                <h4>Download Invoice</h4>
+
+                <p>
+                    Download your payment invoice after successful payment.
+                </p>
+
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="service-card">
+
+                <div class="icon">📧</div>
+
+                <h4>Email Receipt</h4>
+
+                <p>
+                    Receive your payment receipt through email.
+                </p>
+
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="service-card">
+
+                <div class="icon">📜</div>
+
+                <h4>Booking History</h4>
+
+                <p>
+                    View your previous parking bookings and payment history.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="text-center mt-5">
+
+    <a href="{{ url_for('home') }}"
+       class="btn btn-primary btn-lg">
+
+        ⬅ Back to Home
+
+    </a>
+
+</div>
+
+
+</body>
+
+</html>

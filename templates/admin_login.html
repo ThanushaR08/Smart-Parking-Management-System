@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Admin Login - Smart Parking System</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin_login.css') }}">
+
+</head>
+
+
+<body>
+
+
+<div class="admin-login-container">
+
+
+<div class="admin-icon">
+    👨‍💼
+</div>
+
+
+<h1>ADMIN LOGIN</h1>
+
+<p>Smart Parking Management System</p>
+
+
+
+<form method="POST" action="/admin_login">
+
+
+<div class="input-box">
+<input 
+type="text"
+name="username"
+placeholder="Enter Admin Username"
+required>
+</div>
+
+
+
+<div class="input-box">
+<input 
+type="password"
+name="password"
+placeholder="Enter Password"
+required>
+</div>
+
+
+
+<button class="admin-btn">
+LOGIN
+</button>
+
+
+</form>
+
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Vehicle Detection</title>
+</head>
+
+<body>
+
+<h2>AI Smart Parking Camera</h2>
+
+<img src="{{ url_for('video_feed') }}" width="700">
+
+<br><br>
+
+<form action="{{ url_for('capture_vehicle') }}" method="POST">
+    <button type="submit">
+        Capture Vehicle
+    </button>
+</form>
+
+</body>
+</html>

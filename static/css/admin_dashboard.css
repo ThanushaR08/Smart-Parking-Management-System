@@ -1,0 +1,348 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,Arial,sans-serif;
+}
+
+
+body{
+
+    background:#f4f7fb;
+    overflow-y:scroll;
+}
+
+
+/* SIDEBAR */
+
+.sidebar{
+
+    width:240px;
+    height:100vh;
+
+    background:#06283D;
+
+    color:white;
+
+    padding:20px;
+
+    position:fixed;
+
+}
+
+
+.sidebar h2{
+
+    text-align:center;
+
+    color:#00ff88;
+
+    font-size:22px;
+
+}
+
+
+.admin-text{
+
+    text-align:center;
+
+    color:#ccc;
+
+    margin:15px 0 30px;
+
+}
+
+
+
+.sidebar a{
+
+    display:block;
+
+    padding:12px;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    margin-bottom:8px;
+
+    font-size:15px;
+
+}
+
+
+
+.sidebar a:hover{
+
+    background:#00c853;
+
+}
+
+
+
+.logout{
+
+    position:absolute;
+
+    bottom:25px;
+
+    width:200px;
+
+}
+
+
+
+
+
+/* MAIN */
+
+.main{
+    margin-left:240px;
+    padding:20px;
+    min-height:100vh;
+
+    overflow-y:scroll;
+}
+
+
+
+
+
+/* TOPBAR */
+
+
+.topbar{
+
+    background:white;
+
+    padding:15px 25px;
+
+    border-radius:15px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    box-shadow:0 5px 15px #ddd;
+
+}
+
+
+
+.topbar h1{
+
+    font-size:25px;
+
+}
+
+
+
+
+
+/* CARDS */
+
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(6,1fr);
+
+    gap:12px;
+
+    margin-top:15px;
+
+}
+
+
+
+.card{
+
+    background:white;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    box-shadow:0 5px 15px #ddd;
+
+    height:90px;
+
+}
+
+
+
+.card i{
+
+    font-size:28px;
+
+    color:#00c853;
+
+}
+
+
+
+.card h3{
+
+    font-size:22px;
+
+    margin:0;
+
+}
+
+
+
+.card p{
+
+    font-size:13px;
+
+    margin:0;
+
+}
+
+
+
+
+
+
+
+/* ANALYTICS BOX */
+
+
+.table-box{
+
+    background:white;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    margin-top:15px;
+
+    box-shadow:0 5px 15px #ddd;
+
+    min-width:900px;
+
+    overflow-x:scroll;
+
+}
+
+
+
+.analytics-box{
+
+    width:400px;
+
+}
+
+
+
+#parkingChart{
+
+    width:220px !important;
+
+    height:220px !important;
+
+    margin:auto;
+
+    display:block;
+
+}
+
+
+
+
+
+
+
+/* PAYMENTS TABLE */
+
+
+.table-box table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    font-size:14px;
+
+}
+
+
+
+.table-box th{
+
+    background:#06283D;
+
+    color:white;
+
+    padding:10px;
+
+}
+
+
+
+.table-box td{
+
+    padding:8px;
+
+    text-align:center;
+
+    border-bottom:1px solid #ddd;
+
+}
+
+
+
+.paid{
+
+    background:#00c853;
+
+    color:white;
+
+    padding:5px 12px;
+
+    border-radius:15px;
+
+    font-size:12px;
+
+}
+
+.pending{
+
+background:#ffc107;
+
+color:black;
+
+padding:5px 12px;
+
+border-radius:15px;
+
+font-size:12px;
+
+}
+
+
+.failed{
+
+background:#dc3545;
+
+color:white;
+
+padding:5px 12px;
+
+border-radius:15px;
+
+font-size:12px;
+
+}
